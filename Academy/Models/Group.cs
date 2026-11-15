@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Academy2.Models
+namespace Academy.Models
 {
     [Table("Groups")] // Указываем точное имя таблицы в БД
     public class Group

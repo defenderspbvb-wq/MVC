@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Academy2.Models
+namespace Academy.Models
 {
     public class TeacherDiscipline
     {

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 
-namespace Academy2.Models
+namespace Academy.Models
 {
     [Table("Directions")] // Указываем точное имя таблицы в БД
     public class Direction

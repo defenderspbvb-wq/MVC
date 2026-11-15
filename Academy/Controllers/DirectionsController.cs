@@ -1,7 +1,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Academy2.Models;
+using Academy.Models;
 
 public class DirectionsController : Controller
 {
@@ -13,9 +13,19 @@ public class DirectionsController : Controller
     }
 
     // GET: DIRECTIONS
-    public async Task<IActionResult> Index()    
+    public async Task<IActionResult> Index(string sortOrder)    
     {
-        return View(await _context.Directions.ToListAsync());
+        ViewData["NameSortParam"] = sortOrder =="name_desc" ? "name_asc" : "name_desc";
+        IQueryable<Academy.Models.Direction> directions = from d in _context.Directions select d;
+
+        switch (sortOrder)
+        {
+            case "name_asc": directions = directions.OrderBy(d => d.direction_name); break;
+            case "name_desc": directions = directions.OrderByDescending(d => d.direction_name); break;
+        }
+
+        //return View(await _context.Directions.ToListAsync());
+        return View(directions);
     }
 
     // GET: DIRECTIONS/Details/5
