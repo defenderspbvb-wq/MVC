@@ -1,0 +1,69 @@
+@model IEnumerable<Academy.Models.Group>
+
+@{
+    ViewData["Title"] = "Группы";
+}
+
+<div class="controls">
+    <h1>Группы</h1>
+
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Добавить</a>
+    </p>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParam"]">
+                    @Html.DisplayNameFor(model => model.group_name)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DirectionSortParam"]">
+                    @Html.DisplayNameFor(model => model.Direction)
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.learning_days)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.start_time)
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParam"]">
+                    @Html.DisplayNameFor(model => model.start_date)
+                </a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.group_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Direction!.direction_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.learning_days)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.start_time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.start_date)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.group_id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.group_id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.group_id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

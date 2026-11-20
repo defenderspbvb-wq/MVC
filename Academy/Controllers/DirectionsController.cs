@@ -29,15 +29,15 @@ public class DirectionsController : Controller
     }
 
     // GET: DIRECTIONS/Details/5
-    public async Task<IActionResult> Details(byte? direction_id)
+    public async Task<IActionResult> Details(byte? id)
     {
-        if (direction_id == null)
+        if (id == null)
         {
             return NotFound();
         }
 
         var direction = await _context.Directions
-            .FirstOrDefaultAsync(m => m.direction_id == direction_id);
+            .FirstOrDefaultAsync(m => m.direction_id == id);
         if (direction == null)
         {
             return NotFound();
@@ -69,14 +69,14 @@ public class DirectionsController : Controller
     }
 
     // GET: DIRECTIONS/Edit/5
-    public async Task<IActionResult> Edit(byte? direction_id)
+    public async Task<IActionResult> Edit(byte? id)
     {
-        if (direction_id == null)
+        if (id == null)
         {
             return NotFound();
         }
 
-        var direction = await _context.Directions.FindAsync(direction_id);
+        var direction = await _context.Directions.FindAsync(id);
         if (direction == null)
         {
             return NotFound();
@@ -89,9 +89,9 @@ public class DirectionsController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(byte? direction_id, [Bind("direction_id,direction_name,Groups")] Direction direction)
+    public async Task<IActionResult> Edit(byte? id, [Bind("direction_id,direction_name,Groups")] Direction direction)
     {
-        if (direction_id != direction.direction_id)
+        if (id != direction.direction_id)
         {
             return NotFound();
         }
@@ -120,15 +120,15 @@ public class DirectionsController : Controller
     }
 
     // GET: DIRECTIONS/Delete/5
-    public async Task<IActionResult> Delete(byte? direction_id)
+    public async Task<IActionResult> Delete(byte? id)
     {
-        if (direction_id == null)
+        if (id == null)
         {
             return NotFound();
         }
 
         var direction = await _context.Directions
-            .FirstOrDefaultAsync(m => m.direction_id == direction_id);
+            .FirstOrDefaultAsync(m => m.direction_id == id);
         if (direction == null)
         {
             return NotFound();
@@ -140,9 +140,9 @@ public class DirectionsController : Controller
     // POST: DIRECTIONS/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(byte? direction_id)
+    public async Task<IActionResult> DeleteConfirmed(byte? id)
     {
-        var direction = await _context.Directions.FindAsync(direction_id);
+        var direction = await _context.Directions.FindAsync(id);
         if (direction != null)
         {
             _context.Directions.Remove(direction);
